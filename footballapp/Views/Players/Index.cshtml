@@ -1,0 +1,45 @@
+﻿@model IEnumerable<footballapp.Models.Player>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DNI)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DNI)
+        </td>
+        <td>
+            <a href="@Url.Action("Edit", "Players", new { id = item.Id }))">
+                <i class="small material-icons">create</i>
+            </a>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+<div class="fixed-action-btn right">
+    <a href="@Url.Action("Create", "Players")" class="btn-floating btn-small" style="background-color: #F30617;">
+        <i class="large material-icons">add_circle</i>
+    </a>
+</div>
