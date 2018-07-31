@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+<h2>New Team</h2>
 
 
 @using (Html.BeginForm()) 
@@ -32,9 +32,13 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    <div>
+        <div class="fixed-action-btn right">
+            <a href="@Url.Action("Index", "Teams")" class="btn-floating btn-small" style="background-color: #F30617;">
+                <i class="large material-icons">arrow_back</i>
+            </a>
+        </div>
+    </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

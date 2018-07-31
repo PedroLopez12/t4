@@ -12,7 +12,9 @@ namespace footballapp.Models
         public int Id { get; set; }
         [StringLength(50)]
         public string Name { get; set; }
+        public int Points { get; set; }
         [StringLength(50)]
         public virtual List<Player> Players { get; set; }
+
     }
 }

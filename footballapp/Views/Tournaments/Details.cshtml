@@ -1,27 +1,55 @@
-﻿@model footballapp.Models.Tournament
+﻿@model footballapp.Models.TournamentDetailsViewModel
 
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
-
 <div>
-    <h4>Tournament</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-    </dl>
+    <br />
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    <a href="@Url.Action("Fixture", "Tournaments", new { id = Model.id })">
+        <input type="submit" value="View Fixture" class="btn btn-default" />
+    </a>
 </p>
+
+<div>
+    <hr />
+</div>
+        <div>
+            <h3 class="text-center">@Model.Name</h3>
+            <h4>Leaderboard</h4>
+            <table class="table">
+                <tr>
+                    <th>
+                        Team
+                    </th>
+                    <th>
+                        Points
+                    </th>
+                </tr>
+
+                @foreach (var item in Model.Leaderboard)
+                {
+                    <tr>
+                        <td>
+                            @item.Name
+                        </td>
+                        <td>
+                            @item.Points
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+        <div>
+            <div class="fixed-action-btn right">
+                <a href="@Url.Action("Index", "Tournaments")" class="btn-floating btn-small" style="background-color: #F30617;">
+                    <i class="large material-icons">arrow_back</i>
+                </a>
+            </div>
+        </div>
+
+

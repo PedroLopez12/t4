@@ -5,30 +5,42 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Teams List</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
-        <th></th>
+        <th>
+            Options
+        </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit", "Teams", new { id = item.Id })">
+                    <i class="small material-icons">create</i>
+                </a>
+                <a href="@Url.Action("Details", "Teams", new { id = item.Id })">
+                    <i class="small material-icons">details</i>
+                </a>
+                <a href="@Url.Action("Delete", "Teams", new { id = item.Id })">
+                    <i class="small material-icons">delete</i>
+                </a>
+            </td>
+        </tr>
+
+        <div class="fixed-action-btn right">
+            <a href="@Url.Action("Create", "Teams")">
+                <i class="large material-icons">add_circle</i>
+            </a>
+        </div>
+    }
 
 </table>

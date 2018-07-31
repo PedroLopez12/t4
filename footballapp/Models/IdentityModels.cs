@@ -33,5 +33,7 @@ namespace footballapp.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<footballapp.Models.Match> Matches { get; set; }
     }
 }

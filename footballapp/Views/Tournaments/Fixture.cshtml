@@ -1,0 +1,75 @@
+﻿@model footballapp.Models.TournamentFixtureViewModel
+
+@{
+    ViewBag.Title = "Fixture";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <hr />
+</div>
+<div>
+    <h3 class="text-center">@Model.Name</h3>
+    <h4>Fixture</h4>
+    <table class="table">
+        <tr>
+            <th>
+                Matchweek
+            </th>
+            <th>
+                Local
+            </th>
+            <th>
+                Visitor
+            </th>
+            <th>
+                Local Score
+            </th>
+            <th>
+                Visitor Score
+            </th>
+            
+        </tr>
+            @foreach (var item in Model.Fixture)
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.matchWeek)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Team_1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Team_2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Team_1_Score)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Team_2_Score)
+            </td>
+
+            <td>
+                <a href="@Url.Action("Edit", "Matches", new { id = item.Id })">
+                    <i class="small material-icons">create</i>
+                </a>
+                <a href="@Url.Action("Delete", "Matches", new { id = item.Id })">
+                    <i class="small material-icons">delete</i>
+                </a>
+            </td>
+        </tr>
+            }
+
+        </table>
+</div>
+<div>
+    <div class="fixed-action-btn right">
+        <a href="@Url.Action("Details", "Tournaments", new { id = Model.Id })" class="btn-floating btn-small" style="background-color: #F30617;">
+            <i class="large material-icons">arrow_back</i>
+        </a>
+    </div>
+</div>
+
+@section Scripts {
+    
+}

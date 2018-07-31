@@ -1,0 +1,55 @@
+﻿@model footballapp.Models.Match
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete Match</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.matchWeek)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.matchWeek)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Team_1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Team_1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Team_2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Team_2)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> 
+        </div>
+        <div>
+            <div class="fixed-action-btn right">
+                <a href="@Url.Action("Fixture", "Tournaments", new { id = Model.Tournament_Id })"
+                   class="btn-floating btn-small" style="background-color: #F30617;">
+                    <i class="large material-icons">arrow_back</i>
+                </a>
+            </div>
+        </div>
+    }
+</div>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -21,18 +22,25 @@ namespace footballapp.Controllers
         }
 
         // GET: Tournaments/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            TournamentDetailsViewModel tournamentDetailsViewModel = new TournamentDetailsViewModel();
+
             Tournament tournament = db.Tournaments.Find(id);
+            
             if (tournament == null)
             {
                 return HttpNotFound();
             }
-            return View(tournament);
+            tournamentDetailsViewModel.id = tournament.Id;
+            tournamentDetailsViewModel.Leaderboard = this.GetLeaderboard(id);
+            tournamentDetailsViewModel.Name = tournament.Name;
+
+            return View(tournamentDetailsViewModel);
         }
 
         // GET: Tournaments/Create
@@ -122,6 +130,63 @@ namespace footballapp.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult Fixture (int id)
+        {
+            TournamentFixtureViewModel tournamentFixtureViewModel = new TournamentFixtureViewModel();
+            Tournament tournament = db.Tournaments.Find(id);
+            List<Match> PreviousMatches = db.Matches.Where(x => x.Tournament_Id == id).ToList();
+            List<Match> Matches = new List<Match>();
+            tournamentFixtureViewModel.Fixture = PreviousMatches.OrderBy(x => x.matchWeek).ToList();
+            if (PreviousMatches.Count == 0)
+            {
+                Matches = this.GenerateFixture(id);
+                tournamentFixtureViewModel.Fixture = Matches.OrderBy(x => x.matchWeek).ToList();
+            }
+            tournamentFixtureViewModel.Id = tournament.Id;
+            tournamentFixtureViewModel.Name = tournament.Name;
+
+            return View(tournamentFixtureViewModel);
+        }
+
+        [HttpGet]
+        public List<Team> GetLeaderboard(int tournamentId)
+        {
+            List<Team> leaderBoard = new List<Team>();
+            Tournament Tournament = db.Tournaments.Where(x => x.Id == tournamentId).Single();
+            leaderBoard = Tournament.Teams.OrderByDescending(x => x.Points).ToList();
+
+            return (leaderBoard);
+        }
+
+        [HttpPost]
+        public List<Match> GenerateFixture(int tournamentId)
+        {
+        List<Match> Fixture = new List<Match>();
+            Tournament tournament = db.Tournaments.Where(x => x.Id == tournamentId).Single();
+            Team [] teams  = tournament.Teams.ToArray();
+            
+
+            for(int i = 0; i < tournament.Teams.Count; i ++)
+            {
+                int matchWeek = 1;
+                for (int j = 0; j < tournament.Teams.Count; j++)
+                {
+                    if (teams[i] != teams[j])
+                    {
+                        Fixture.Add(new Match() { Team_1 = teams[i].Name, Team_2 = teams[j].Name, Tournament_Id = tournamentId, Team_1_Score = 0, Team_2_Score = 0, matchWeek = matchWeek });
+                        matchWeek++;
+                    }
+                }
+            }
+
+            for(int i = 0; i < Fixture.Count; i++)
+            {
+                db.Matches.Add(Fixture[i]);
+                db.SaveChanges();
+            }
+            return Fixture;
         }
     }
 }

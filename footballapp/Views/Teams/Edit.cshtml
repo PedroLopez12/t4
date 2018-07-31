@@ -34,9 +34,13 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    <div>
+        <div class="fixed-action-btn right">
+            <a href="@Url.Action("Index", "Teams")" class="btn-floating btn-small" style="background-color: #F30617;">
+                <i class="large material-icons">arrow_back</i>
+            </a>
+        </div>
+    </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

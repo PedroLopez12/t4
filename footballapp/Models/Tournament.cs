@@ -13,6 +13,7 @@ namespace footballapp.Models
         [StringLength(50)]
         public string Name { get; set; }
         [StringLength(50)]
-        public virtual List<Team> Teams { get; set; }
+        public virtual ICollection<Team> Teams { get; set; }
+        public virtual ICollection<Match> Matches { get; set; }
     }
 }

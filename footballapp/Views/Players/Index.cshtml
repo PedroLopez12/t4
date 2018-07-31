@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Players List</h2>
 
 <table class="table">
     <tr>
@@ -27,19 +27,23 @@
             @Html.DisplayFor(modelItem => item.DNI)
         </td>
         <td>
-            <a href="@Url.Action("Edit", "Players", new { id = item.Id }))">
-                <i class="small material-icons">create</i>
+            <a href="@Url.Action("Edit", "Players", new { id = item.Id })">
+                <i class="small material-icons">create</i> 
             </a>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            <a href="@Url.Action("Details", "Players", new { id = item.Id })">
+                <i class="small material-icons">details</i> 
+            </a>
+            <a href="@Url.Action("Delete", "Players", new { id = item.Id })">
+                <i class="small material-icons">delete</i> 
+            </a>
+        
         </td>
     </tr>
 }
 
 </table>
 <div class="fixed-action-btn right">
-    <a href="@Url.Action("Create", "Players")" class="btn-floating btn-small" style="background-color: #F30617;">
-        <i class="large material-icons">add_circle</i>
+    <a href="@Url.Action("Create", "Players")">
+        <i class="large material-icons">group_add</i>
     </a>
 </div>

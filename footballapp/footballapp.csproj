@@ -198,6 +198,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MatchesController.cs" />
     <Compile Include="Controllers\PlayersController.cs" />
     <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="Controllers\TournamentsController.cs" />
@@ -212,13 +213,45 @@
     <Compile Include="Migrations\201806110207229_classes.Designer.cs">
       <DependentUpon>201806110207229_classes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806260221363_updates.cs" />
+    <Compile Include="Migrations\201806260221363_updates.Designer.cs">
+      <DependentUpon>201806260221363_updates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806260231189_changes.cs" />
+    <Compile Include="Migrations\201806260231189_changes.Designer.cs">
+      <DependentUpon>201806260231189_changes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806260346162_viewmodel.cs" />
+    <Compile Include="Migrations\201806260346162_viewmodel.Designer.cs">
+      <DependentUpon>201806260346162_viewmodel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807310209437_updates1.cs" />
+    <Compile Include="Migrations\201807310209437_updates1.Designer.cs">
+      <DependentUpon>201807310209437_updates1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807310241370_matchupdate.cs" />
+    <Compile Include="Migrations\201807310241370_matchupdate.Designer.cs">
+      <DependentUpon>201807310241370_matchupdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807311040556_teamupdate.cs" />
+    <Compile Include="Migrations\201807311040556_teamupdate.Designer.cs">
+      <DependentUpon>201807311040556_teamupdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807311050361_rollbackteams.cs" />
+    <Compile Include="Migrations\201807311050361_rollbackteams.Designer.cs">
+      <DependentUpon>201807311050361_rollbackteams.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Match.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\Tournament.cs" />
+    <Compile Include="Models\TournamentDetailsViewModel.cs" />
+    <Compile Include="Models\TournamentFixtureViewModel.cs" />
+    <Compile Include="Models\TournamentViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -231,8 +264,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -258,8 +289,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -296,6 +325,12 @@
     <Content Include="Views\Tournaments\Details.cshtml" />
     <Content Include="Views\Tournaments\Edit.cshtml" />
     <Content Include="Views\Tournaments\Index.cshtml" />
+    <Content Include="Views\Matches\Create.cshtml" />
+    <Content Include="Views\Matches\Delete.cshtml" />
+    <Content Include="Views\Matches\Details.cshtml" />
+    <Content Include="Views\Matches\Edit.cshtml" />
+    <Content Include="Views\Matches\Index.cshtml" />
+    <Content Include="Views\Tournaments\Fixture.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -319,6 +354,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806110207229_classes.resx">
       <DependentUpon>201806110207229_classes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806260221363_updates.resx">
+      <DependentUpon>201806260221363_updates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806260231189_changes.resx">
+      <DependentUpon>201806260231189_changes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806260346162_viewmodel.resx">
+      <DependentUpon>201806260346162_viewmodel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807310209437_updates1.resx">
+      <DependentUpon>201807310209437_updates1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807310241370_matchupdate.resx">
+      <DependentUpon>201807310241370_matchupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807311040556_teamupdate.resx">
+      <DependentUpon>201807311040556_teamupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807311050361_rollbackteams.resx">
+      <DependentUpon>201807311050361_rollbackteams.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

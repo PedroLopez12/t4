@@ -1,4 +1,5 @@
-﻿using System;
+﻿using footballapp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,23 +9,20 @@ namespace footballapp.Controllers
 {
     public class HomeController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         public ActionResult Index()
         {
-            return View();
+            TournamentViewModel tournaments = new TournamentViewModel();
+            tournaments.Tournaments = GetAll();
+            return View(tournaments);
         }
 
-        public ActionResult About()
+        private List<Tournament> GetAll()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            List<Tournament> tournaments = db.Tournaments.ToList(); ;
+            return tournaments;
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
 }

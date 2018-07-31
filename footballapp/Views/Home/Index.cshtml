@@ -1,7 +1,18 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿@model footballapp.Models.TournamentViewModel
 
-<div>
-    <h3>Football Season Begins!</h3>
-</div>
+<h1 style="text-align: center;">Football Season Begins!</h1>
+<br />
+<table>   
+    
+        @foreach (var item in Model.Tournaments.ToList())
+        {
+            <div class="col s8 col-md-3 l4">
+                <div class="card hoverable" style="cursor: pointer;" onclick="location.href = '@Url.Action("Details", "Tournaments")/@item.Id'">
+                    <div class="card-content">
+                        <h3>@item.Name</h3>
+                    </div>
+                </div>
+              </div>
+        }
+</table>
+

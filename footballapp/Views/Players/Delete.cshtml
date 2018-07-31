@@ -5,11 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
+<h2>Delete Player</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+
 <div>
-    <h4>Player</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -35,8 +34,14 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Delete" class="btn btn-default" />
+        </div>
+        <div>
+            <div class="fixed-action-btn right">
+                <a href="@Url.Action("Index", "Players")" class="btn-floating btn-small" style="background-color: #F30617;">
+                    <i class="large material-icons">arrow_back</i>
+                </a>
+            </div>
         </div>
     }
 </div>

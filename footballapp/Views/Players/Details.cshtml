@@ -29,7 +29,10 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div>
+    <div class="fixed-action-btn right">
+        <a href="@Url.Action("Index", "Players")" class="btn-floating btn-small" style="background-color: #F30617;">
+            <i class="large material-icons">arrow_back</i>
+        </a>
+    </div>
+</div>
